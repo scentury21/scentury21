@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color tokens — dark luxury palette with rose accent from the logo */
+  --color-obsidian: #0a0a0a;
+  --color-charcoal: #1a1a1a;
+  --color-graphite: #2a2a2a;
+  --color-smoke: #8a8a8a;
+  --color-pearl: #f5f0eb;
+  --color-cream: #faf7f2;
+  --color-champagne: #c9a96e;
+  --color-rose: #e8b4b8;
+  --color-gold: #d4af37;
+
+  /* Spacing scale — generous, luxury feel */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Animation tokens */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 800ms;
+}
+
+* {
+  border-color: var(--color-graphite);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-pearl);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), serif;
+}
+
+/* Fluid type scale */
+.text-fluid-hero {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 1.05;
+}
+.text-fluid-h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+.text-fluid-h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.2;
+}
+.text-fluid-body {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-graphite);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-champagne);
+}
+
+/* Branded selection */
+::selection {
+  background: var(--color-rose);
+  color: var(--color-obsidian);
+}
+
+/* Accessible, on-brand focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-champagne);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
