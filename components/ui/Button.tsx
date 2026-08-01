@@ -8,11 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-champagne text-obsidian hover:bg-rose shadow-lg shadow-champagne/20 hover:shadow-rose/30 hover:-translate-y-0.5",
+    "bg-champagne text-obsidian hover:bg-rose shadow-xl shadow-champagne/10 hover:shadow-rose/20",
   secondary:
-    "bg-graphite text-pearl hover:bg-charcoal border border-graphite hover:border-champagne/40 hover:-translate-y-0.5",
+    "bg-transparent text-pearl border border-pearl/30 hover:border-champagne hover:text-champagne",
   outline:
-    "border border-champagne/60 text-champagne hover:bg-champagne hover:text-obsidian hover:-translate-y-0.5",
+    "border border-champagne text-champagne hover:bg-champagne hover:text-obsidian",
   ghost: "text-pearl hover:text-champagne",
 };
 
@@ -21,7 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`px-8 py-3.5 text-sm tracking-wide rounded-full transition-all duration-400 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 ${variantStyles[variant]} ${className}`}
+        className={`px-9 py-4 text-sm font-medium tracking-[0.15em] uppercase rounded-none disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-400 ease-out ${variantStyles[variant]} ${className}`}
         {...props}
       />
     );
