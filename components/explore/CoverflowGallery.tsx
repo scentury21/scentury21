@@ -99,23 +99,26 @@ export function CoverflowGallery({
             top: "50%",
             width: cardWidth,
             height: cardHeight,
-            borderRadius: 4,
+            borderRadius: 24,
             overflow: "hidden",
             transformStyle: "preserve-3d",
             transform: `translate(-50%, -50%) translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) scale(${sc})`,
-            transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.6s",
+            transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.6s, box-shadow 0.6s",
             opacity: visible ? 1 : 0,
             cursor: isActive ? "default" : "pointer",
             pointerEvents: visible ? "auto" : "none",
             background:
               "linear-gradient(160deg, var(--color-graphite), var(--color-charcoal))",
             border: isActive
-              ? "1px solid var(--color-champagne)"
+              ? "1px solid rgba(201,169,110,0.5)"
               : "1px solid var(--color-graphite)",
+            boxShadow: isActive
+              ? "0 20px 60px -15px rgba(201,169,110,0.35)"
+              : "0 10px 30px -10px rgba(0,0,0,0.5)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            padding: "1.5rem",
+            padding: "1.75rem",
           };
 
           return (

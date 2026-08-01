@@ -8,12 +8,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-champagne text-obsidian hover:bg-rose transition-colors duration-400",
+    "bg-champagne text-obsidian hover:bg-rose shadow-lg shadow-champagne/20 hover:shadow-rose/30 hover:-translate-y-0.5",
   secondary:
-    "bg-graphite text-pearl hover:bg-charcoal transition-colors duration-400",
+    "bg-graphite text-pearl hover:bg-charcoal border border-graphite hover:border-champagne/40 hover:-translate-y-0.5",
   outline:
-    "border border-champagne text-champagne hover:bg-champagne hover:text-obsidian transition-colors duration-400",
-  ghost: "text-pearl hover:text-champagne transition-colors duration-400",
+    "border border-champagne/60 text-champagne hover:bg-champagne hover:text-obsidian hover:-translate-y-0.5",
+  ghost: "text-pearl hover:text-champagne",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -21,7 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`px-6 py-3 text-sm tracking-wide rounded-sm disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles[variant]} ${className}`}
+        className={`px-8 py-3.5 text-sm tracking-wide rounded-full transition-all duration-400 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 ${variantStyles[variant]} ${className}`}
         {...props}
       />
     );

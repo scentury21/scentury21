@@ -10,7 +10,7 @@ export default function Home() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(circle at 50% 30%, rgba(201,169,110,0.12), transparent 60%)",
+              "radial-gradient(circle at 50% 30%, rgba(201,169,110,0.15), transparent 60%)",
           }}
         />
         <p className="tracking-[0.3em] text-smoke text-sm uppercase">
@@ -26,13 +26,13 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4 mt-2">
           <Link
             href="/shop"
-            className="bg-champagne text-obsidian px-8 py-3 text-sm tracking-wide rounded-sm hover:bg-rose transition-colors duration-400"
+            className="bg-champagne text-obsidian px-8 py-3.5 text-sm tracking-wide rounded-full shadow-lg shadow-champagne/20 hover:bg-rose hover:shadow-rose/30 hover:-translate-y-0.5 transition-all duration-400"
           >
             Explore Collection
           </Link>
           <Link
             href="/explore"
-            className="border border-champagne text-champagne px-8 py-3 text-sm tracking-wide rounded-sm hover:bg-champagne hover:text-obsidian transition-colors duration-400"
+            className="border border-champagne/60 text-champagne px-8 py-3.5 text-sm tracking-wide rounded-full hover:bg-champagne hover:text-obsidian hover:-translate-y-0.5 transition-all duration-400"
           >
             Discover Your Scent
           </Link>
@@ -43,21 +43,27 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="px-6 py-24 max-w-7xl mx-auto">
-        <h2 className="text-fluid-h2 font-display text-pearl mb-10">
-          Featured
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="px-6 py-28 max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-12">
+          <h2 className="text-fluid-h2 font-display text-pearl">Featured</h2>
+          <Link
+            href="/shop"
+            className="text-sm text-champagne hover:text-rose transition-colors duration-400"
+          >
+            View all →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
             <Link
               key={product.slug}
               href={`/products/${product.slug}`}
-              className="group flex flex-col gap-3 p-5 rounded-sm border border-graphite hover:border-champagne transition-colors duration-400"
+              className="group flex flex-col gap-3 p-6 rounded-2xl bg-charcoal/60 border border-graphite hover:border-champagne/50 shadow-lg shadow-black/20 hover:shadow-champagne/10 hover:-translate-y-1 transition-all duration-400"
             >
-              <div className="aspect-[3/4] bg-charcoal rounded-sm flex items-center justify-center text-smoke text-xs">
+              <div className="aspect-[3/4] rounded-xl bg-gradient-to-br from-graphite to-charcoal flex items-center justify-center text-smoke text-xs">
                 Image coming soon
               </div>
-              <p className="text-xs text-smoke uppercase tracking-wide">
+              <p className="text-xs text-smoke uppercase tracking-wide mt-2">
                 {product.family}
               </p>
               <p className="font-display text-lg text-pearl group-hover:text-champagne transition-colors duration-400">
@@ -72,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* Brand Story */}
-      <section className="px-6 py-24 bg-charcoal">
+      <section className="px-6 py-28 bg-charcoal/50">
         <div className="max-w-3xl mx-auto text-center flex flex-col gap-6">
           <h2 className="text-fluid-h2 font-display text-pearl">
             Crafted, not manufactured.
@@ -92,16 +98,16 @@ export default function Home() {
       </section>
 
       {/* Collection Showcase */}
-      <section className="px-6 py-24 max-w-7xl mx-auto">
-        <h2 className="text-fluid-h2 font-display text-pearl mb-10">
+      <section className="px-6 py-28 max-w-7xl mx-auto">
+        <h2 className="text-fluid-h2 font-display text-pearl mb-12">
           Collections
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {["Signature", "Night", "Fresh"].map((name) => (
             <Link
               key={name}
               href={`/collections/${name.toLowerCase()}`}
-              className="group relative aspect-[4/5] rounded-sm overflow-hidden bg-graphite flex items-end p-6"
+              className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-graphite to-charcoal border border-graphite hover:border-champagne/50 shadow-lg shadow-black/20 hover:-translate-y-1 transition-all duration-400 flex items-end p-8"
             >
               <p className="font-display text-2xl text-pearl group-hover:text-champagne transition-colors duration-400">
                 {name}
@@ -111,8 +117,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Press / Testimonial strip */}
+      <section className="px-6 py-24 border-y border-graphite">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+          <blockquote className="flex flex-col gap-3">
+            <p className="font-display text-lg text-pearl italic">
+              &ldquo;A presence, not a perfume.&rdquo;
+            </p>
+            <p className="text-xs text-smoke uppercase tracking-widest">
+              Lagos Style Journal
+            </p>
+          </blockquote>
+          <blockquote className="flex flex-col gap-3">
+            <p className="font-display text-lg text-pearl italic">
+              &ldquo;Obsidian Noir doesn&apos;t fade — it lingers.&rdquo;
+            </p>
+            <p className="text-xs text-smoke uppercase tracking-widest">
+              Fragrance Weekly
+            </p>
+          </blockquote>
+          <blockquote className="flex flex-col gap-3">
+            <p className="font-display text-lg text-pearl italic">
+              &ldquo;Nigerian luxury, redefined.&rdquo;
+            </p>
+            <p className="text-xs text-smoke uppercase tracking-widest">
+              Scent & Style
+            </p>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* Reach Us */}
+      <section className="px-6 py-28 bg-charcoal/50">
+        <div className="max-w-3xl mx-auto text-center flex flex-col gap-8">
+          <h2 className="text-fluid-h2 font-display text-pearl">Reach Us</h2>
+          <p className="text-smoke">
+            Prefer to talk before you buy? We&apos;re on WhatsApp, Instagram,
+            and TikTok.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#"
+              className="border border-champagne/60 text-champagne px-6 py-3 text-sm rounded-full hover:bg-champagne hover:text-obsidian hover:-translate-y-0.5 transition-all duration-400"
+            >
+              WhatsApp
+            </a>
+            <a
+              href="#"
+              className="border border-graphite text-smoke px-6 py-3 text-sm rounded-full hover:border-champagne/50 hover:text-pearl hover:-translate-y-0.5 transition-all duration-400"
+            >
+              Instagram
+            </a>
+            <a
+              href="#"
+              className="border border-graphite text-smoke px-6 py-3 text-sm rounded-full hover:border-champagne/50 hover:text-pearl hover:-translate-y-0.5 transition-all duration-400"
+            >
+              TikTok
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter CTA */}
-      <section className="px-6 py-24 text-center bg-charcoal">
+      <section className="px-6 py-28 text-center">
         <h2 className="text-fluid-h2 font-display text-pearl mb-4">
           Stay in scent.
         </h2>
@@ -123,11 +190,11 @@ export default function Home() {
           <input
             type="email"
             placeholder="Your email"
-            className="flex-1 bg-obsidian border border-graphite rounded-sm px-4 py-3 text-pearl placeholder:text-smoke focus:border-champagne outline-none"
+            className="flex-1 bg-charcoal border border-graphite rounded-full px-5 py-3.5 text-pearl placeholder:text-smoke focus:border-champagne outline-none transition-colors duration-400"
           />
           <button
             type="submit"
-            className="bg-champagne text-obsidian px-6 py-3 text-sm rounded-sm hover:bg-rose transition-colors duration-400"
+            className="bg-champagne text-obsidian px-8 py-3.5 text-sm rounded-full shadow-lg shadow-champagne/20 hover:bg-rose hover:-translate-y-0.5 transition-all duration-400"
           >
             Subscribe
           </button>
