@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, User, ShoppingBag, Menu, X } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 const links = [
   { href: "/shop", label: "Shop" },
@@ -14,6 +15,7 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     function onScroll() {
@@ -21,6 +23,22 @@ export function Navbar() {
     }
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    supabase.auth.getUser().then(({ data }) => {
+      setLoggedIn(!!data.user);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setLoggedIn(!!session?.user);
+      }
+    );
+
+    return () => listener.subscription.unsubscribe();
   }, []);
 
   return (
@@ -61,11 +79,14 @@ export function Navbar() {
               <Search size={20} />
             </button>
             <Link
-              href="/login"
-              aria-label="Account"
-              className="text-pearl hover:text-champagne transition-colors duration-400"
+              href={loggedIn ? "/account" : "/login"}
+              aria-label={loggedIn ? "Account" : "Sign in"}
+              className="relative text-pearl hover:text-champagne transition-colors duration-400"
             >
               <User size={20} />
+              {loggedIn && (
+                <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-champagne" />
+              )}
             </Link>
             <Link
               href="/cart"
@@ -114,6 +135,15 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href={loggedIn ? "/account" : "/login"}
+                className="text-fluid-h2 font-display text-champagne hover:text-rose transition-colors duration-400"
+                onClick={() => setMobileOpen(false)}
+              >
+                {loggedIn ? "Account" : "Sign In"}
+              </Link>
+            </li>
           </ul>
         </div>
       )}
